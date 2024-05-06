@@ -1,13 +1,10 @@
-const newGameBoard = require("./gameboard")
+import { newGameboard } from "./gameboard";
 
-function newPlayer(name, computer) {
-    let board = newGameBoard();
-
+export function newPlayer(name, computer) {
+    let board = newGameboard();
     return {
         computer, 
         name,
         board
     }
 }
-
-module.exports = newPlayer;

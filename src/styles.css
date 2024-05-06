@@ -1,0 +1,29 @@
+#enemy-board, #my-board {
+    margin: 50px;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.empty {
+    background-color: rgb(72, 139, 255);
+}
+
+.boat {
+    background-color: rgb(140, 140, 140);
+}
+
+.boat-and-hit {
+    background-color: rgb(171, 0, 0);
+}
+
+.empty-and-hit {
+    background-color: rgb(40, 41, 121);
+}

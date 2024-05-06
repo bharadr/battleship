@@ -1,4 +1,4 @@
-function newShip(length) {
+export function newShip(length) {
 
     if (length < 1) {
         throw new Error("Invalid ship length. Length must be at least 1.");
@@ -23,7 +23,3 @@ function newShip(length) {
         isSunk,
     }
 }
-
-
-module.exports = newShip;
-

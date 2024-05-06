@@ -1,4 +1,4 @@
-function newGameboard() {
+export function newGameboard() {
     let rows = 10;
     let columns = 10;
     let shipList = [];
@@ -14,10 +14,10 @@ function newGameboard() {
 
     for (let i = 0; i < rows; i++) {
         let row = []
-        gameBoard.push(row);
         for (let j = 0; j < columns; j++) {
             row.push(EMPTY);
         }
+        gameBoard.push(row);
     }
 
     function fillBoardRange(startRow, startCol, endRow, endCol, horizontal, value) {
@@ -95,7 +95,7 @@ function newGameboard() {
         // Hit an actual boat
         if (val > 0) {
             gameBoard[row][col] *= -1;
-            shipIndex = val - 1;
+            let shipIndex = val - 1;
             shipList[shipIndex].hit();
         }
         return true;
@@ -124,17 +124,13 @@ function newGameboard() {
     }
 
     return {
-        placeShip, //
-        receiveAttack, //
-        getNumShips, //
-        getAllSunk, //
+        placeShip,
+        receiveAttack, 
+        getNumShips, 
+        getAllSunk, 
         getBoard, 
         getPublicBoard,
         EMPTY,
         EMPTY_AND_HIT,
     }
 }
-
-
-module.exports = newGameboard;
-
