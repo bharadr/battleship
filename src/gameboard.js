@@ -20,6 +20,7 @@ export function newGameboard() {
         gameBoard.push(row);
     }
 
+
     function fillBoardRange(startRow, startCol, endRow, endCol, horizontal, value) {
         if (horizontal) {
             for (let i = startCol; i < endCol + 1; i++) {

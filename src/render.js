@@ -11,6 +11,7 @@ export function renderGameboard(gameBoard, elemId) {
     if (enemyBoard) {
         boardArr = gameBoard.getPublicBoard();
     }
+
     for (let i = 0; i < boardArr.length; i++) {
         let rowDiv = document.createElement("div");
         rowDiv.className = 'row'
