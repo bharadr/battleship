@@ -1,4 +1,4 @@
-import { newGameboard } from "./gameboard";
+import { newGameboard, EMPTY_AND_HIT, EMPTY } from "./gameboard";
 import { newShip } from "./ship";
 
 test('New Gameboard, basic state ', () => {
@@ -65,7 +65,7 @@ test('Test receiveAttack', () => {
     // If we attack again, it should not work 
     expect(b.receiveAttack(0, 0)).toBe(false);
     // Check State
-    expect(b.getBoard()[0][0]).toBe(b.EMPTY_AND_HIT);
+    expect(b.getBoard()[0][0]).toBe(EMPTY_AND_HIT);
 
     // Successful Attack on actual ship
     expect(b.receiveAttack(0, 4)).toBe(true);
@@ -121,8 +121,8 @@ test('Test gameBoard and public board', () => {
             counter[val] = (counter[val] || 0) + 1;
         }
     }
-    expect(counter[b.EMPTY]).toBe(91);
-    expect(counter[b.EMPTY_AND_HIT]).toBe(1);
+    expect(counter[EMPTY]).toBe(91);
+    expect(counter[EMPTY_AND_HIT]).toBe(1);
     expect(counter[-1]).toBe(5);
     expect(counter[2]).toBe(3);
 
@@ -136,7 +136,7 @@ test('Test gameBoard and public board', () => {
             publicCounter[val] = (publicCounter[val] || 0) + 1;
         }
     }
-    expect(publicCounter[b.EMPTY]).toBe(94);
-    expect(publicCounter[b.EMPTY_AND_HIT]).toBe(1);
+    expect(publicCounter[EMPTY]).toBe(94);
+    expect(publicCounter[EMPTY_AND_HIT]).toBe(1);
     expect(publicCounter[-1]).toBe(5);
 });

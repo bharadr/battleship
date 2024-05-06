@@ -1,20 +1,21 @@
+export const EMPTY = -1000;
+export const EMPTY_AND_HIT = -2000;
+export const ROWS = 10;
+export const COLUMNS = 10;
+
 export function newGameboard() {
-    let rows = 10;
-    let columns = 10;
     let shipList = [];
     let gameBoard = [];
 
     // The Gameboard contains 4 possible values
-    const EMPTY = -1000;
-    const EMPTY_AND_HIT = -2000;
     // 3. (index of the boat on the shiplist + 1)
     // when the boat is not hit
     // 4. -1 * (index of the boat on the shiplist + 1)
     // when the boat is hit.
 
-    for (let i = 0; i < rows; i++) {
+    for (let i = 0; i < ROWS; i++) {
         let row = []
-        for (let j = 0; j < columns; j++) {
+        for (let j = 0; j < COLUMNS; j++) {
             row.push(EMPTY);
         }
         gameBoard.push(row);
@@ -54,7 +55,7 @@ export function newGameboard() {
     // if we failed to place ship, return false
     function placeShip(row, col, ship, horizontal) {
         // Starting point out of bounds
-        if (row < 0 || col < 0 || row >= rows || col >= columns) {
+        if (row < 0 || col < 0 || row >= ROWS || col >= COLUMNS) {
             return false;
         }
         let endingRow = row;
@@ -65,7 +66,7 @@ export function newGameboard() {
             endingRow += (ship.length - 1);
         }
         // Ending point out of bounds
-        if (endingRow >= rows || endingCol >= columns) {
+        if (endingRow >= ROWS || endingCol >= COLUMNS) {
             return false;
         }
         // Is any of the spaces occupied already?
@@ -81,7 +82,7 @@ export function newGameboard() {
     // If attack was not received return false
     function receiveAttack(row, col) {
         // Point out of bounds
-        if (row < 0 || col < 0 || row >= rows || col >= columns) {
+        if (row < 0 || col < 0 || row >= ROWS || col >= COLUMNS) {
             return false;
         }
         let val = gameBoard[row][col]
@@ -109,13 +110,22 @@ export function newGameboard() {
         return shipList.every(ship => ship.isSunk());
     }
 
-    const getBoard = () => gameBoard;
+    const getBoard = () => {
+        let copy = [];
+        for (let i = 0; i < gameBoard.length; i++) {
+            copy[i] = [];
+            for (let j = 0; j < gameBoard[i].length; j++) {
+                copy[i][j] = gameBoard[i][j];
+            }
+        }
+        return copy;
+    };
     const getNumShips = () => shipList.length;
 
     function getPublicBoard() {
         let board = getBoard();
         for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board.length; j++) {
+            for (let j = 0; j < board[i].length; j++) {
                 if (board[i][j] > 0) {
                     board[i][j] = EMPTY;
                 }
@@ -131,7 +141,5 @@ export function newGameboard() {
         getAllSunk, 
         getBoard, 
         getPublicBoard,
-        EMPTY,
-        EMPTY_AND_HIT,
     }
 }
